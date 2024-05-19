@@ -79,4 +79,28 @@ class MoviesInfoControllerIntgTest {
                 .expectBodyList(MovieInfo.class)
                 .hasSize(3);
     }
+
+    @Test
+    void getMovieInfoById() {
+        var movieInfoId = "abc";
+
+        webTestClient
+                .get()
+                .uri(MOVIES_INFO_URL + "/{id}", movieInfoId)
+                .exchange()
+                .expectStatus()
+                .is2xxSuccessful()
+
+                /* 2 Approach of testing the response body */
+                /* 1. jsonPath usage example */
+                .expectBody()
+                .jsonPath("$.name").isEqualTo("Dark Knight Rises");
+
+                /* 2. consumewith usage example */
+//                .expectBody(MovieInfo.class)
+//                .consumeWith(movieInfoEntityExchangeResult -> {
+//                    var movieInfo = movieInfoEntityExchangeResult.getResponseBody();
+//                    assertNotNull(movieInfo);
+//                });
+    }
 }
