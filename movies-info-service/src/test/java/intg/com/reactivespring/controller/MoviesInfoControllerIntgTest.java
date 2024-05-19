@@ -131,4 +131,19 @@ class MoviesInfoControllerIntgTest {
 
         //then
     }
+
+    @Test
+    void deleteMovieInfo() {
+        //given
+        var movieInfoId = "abc";
+
+        //when
+        webTestClient
+                .delete()
+                .uri(MOVIES_INFO_URL + "/{id}", movieInfoId)
+                .exchange()
+                .expectStatus()
+                .isNoContent();
+        //then
+    }
 }
