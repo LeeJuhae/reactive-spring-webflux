@@ -132,4 +132,20 @@ public class MoviesInfoControllerUnitTest {
 
         //then
     }
+    @Test
+    void deleteMovieInfo() {
+        //given
+        var movieInfoId = "abc";
+
+        when(moviesInfoServiceMock.deleteMovieInfo(isA(String.class))).thenReturn(Mono.empty());
+
+        //when
+        webTestClient
+                .delete()
+                .uri(MOVIES_INFO_URL + "/{id}", movieInfoId)
+                .exchange()
+                .expectStatus()
+                .isNoContent();
+        //then
+    }
 }
