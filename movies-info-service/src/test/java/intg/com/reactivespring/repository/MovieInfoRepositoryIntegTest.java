@@ -126,4 +126,18 @@ class MovieInfoRepositoryIntegTest {
                 .expectNextCount(1)
                 .verifyComplete();
     }
+
+    @Test
+    void findByName() {
+        //given
+        String name = "Batman Begins";
+
+        //when
+        var moviesInfoFlux = movieInfoRepository.findByName(name).log();
+
+        //then
+        StepVerifier.create(moviesInfoFlux)
+                .expectNextCount(1)
+                .verifyComplete();
+    }
 }
