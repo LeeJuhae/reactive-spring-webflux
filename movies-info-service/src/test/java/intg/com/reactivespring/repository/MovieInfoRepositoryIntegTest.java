@@ -113,4 +113,17 @@ class MovieInfoRepositoryIntegTest {
                 .expectNextCount(2)
                 .verifyComplete();
     }
+
+    @Test
+    void findByYear() {
+        //given
+
+        //when
+        var moviesInfoFlux = movieInfoRepository.findByYear(2005).log();
+
+        //then
+        StepVerifier.create(moviesInfoFlux)
+                .expectNextCount(1)
+                .verifyComplete();
+    }
 }
