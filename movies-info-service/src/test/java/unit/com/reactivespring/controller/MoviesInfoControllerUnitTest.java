@@ -86,7 +86,7 @@ public class MoviesInfoControllerUnitTest {
     void addMovieInfo_validation() {
         //given
         var movieInfo = new MovieInfo(null, "",
-                -2005, List.of("Christian Bale", "Michael Cane"), LocalDate.parse("2005-06-15"));
+                -2005, List.of(""), LocalDate.parse("2005-06-15"));
 
 
         //when
@@ -101,7 +101,7 @@ public class MoviesInfoControllerUnitTest {
                 .consumeWith(stringEntityExchangeResult -> {
                     var responseBody = stringEntityExchangeResult.getResponseBody();
                     System.out.println("responseBody : " + responseBody);
-                    var expectedErrorMessage = "moiveInfo.name must be present,movieInfo.year must be a Positive value";
+                    var expectedErrorMessage = "moiveInfo.cast must be present,moiveInfo.name must be present,movieInfo.year must be a Positive value";
                     assert responseBody != null;
                     assertEquals(expectedErrorMessage, responseBody);
                 });
